@@ -2,7 +2,11 @@
 #include <assert.h>
 #include <math.h>
 #include <stdio.h>
+#ifndef __pnacl__
 #include <memory.h>	// for memcpy
+#else
+#include <string.h> // newlib has memcpy in string.h
+#endif
 
 #define MC_MASK_X ((1<<(MC_BITS_X))-1)
 #define MC_MASK_Y ((1<<(MC_BITS_Y))-1)

@@ -182,6 +182,24 @@
 	#endif
 
 	#define DLL_EXT ".so"
+// PNaCl
+#elif defined(__pnacl__)
+
+	//#define __i386__
+	//#define __pnacl__
+
+	#define OS_STRING "pnacl"
+
+	#define QINLINE /*static*/ inline
+
+	#define PATH_SEP '/'
+
+	#define ARCH_STRING "pnacl"
+
+	#define Q3_LITTLE_ENDIAN
+
+	#define DLL_EXT ".pexe"
+
 #endif
 
 // catch missing defines in above blocks

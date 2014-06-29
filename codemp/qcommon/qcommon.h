@@ -1001,6 +1001,7 @@ typedef struct sysEvent_s {
 } sysEvent_t;
 
 sysEvent_t	Sys_GetEvent( void );
+void Com_PushEvent( sysEvent_t *event );
 
 void	Sys_Init (void);
 

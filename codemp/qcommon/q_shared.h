@@ -7,6 +7,10 @@
 // q_shared.h -- included first by ALL program modules.
 // A user mod should never modify this file
 
+#ifdef __pnacl__
+#pragma clang diagnostic ignored "-Wdeprecated-writable-strings" //TODO fix this
+#endif
+
 #define PRODUCT_NAME			"openjk"
 
 #define CLIENT_WINDOW_TITLE "OpenJK (MP)"
@@ -136,11 +140,13 @@ typedef unsigned long ulong;
 
 typedef enum qboolean_e { qfalse=0, qtrue } qboolean;
 
+#ifndef __cplusplus
 #ifndef min
 	#define min(x,y) ((x)<(y)?(x):(y))
 #endif
 #ifndef max
 	#define max(x,y) ((x)>(y)?(x):(y))
+#endif
 #endif
 
 #if defined (_MSC_VER) && (_MSC_VER >= 1600)

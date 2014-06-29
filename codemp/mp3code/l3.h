@@ -64,6 +64,10 @@ ____________________________________________________________________________*/
 #endif
 #endif
 
+#if defined(__pnacl__)
+#define LITTLE_ENDIAN 1
+#endif
+
 #ifndef LITTLE_ENDIAN
 #error Layer III LITTLE_ENDIAN must be defined 0 or 1
 #endif

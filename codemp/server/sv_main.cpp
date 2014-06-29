@@ -1101,6 +1101,10 @@ void SV_Frame( int msec ) {
 
 		// let everything in the world think and move
 		GVM_RunFrame( sv.time );
+		for ( int idx = 0; idx < MAX_CLIENTS; idx++ ) {
+			// copy commandTime from playerState to surfacesOn for all player ents
+			SV_GentityNum( idx )->s.surfacesOn = SV_GameClientNum( idx )->commandTime;
+		}
 	}
 
 	//rww - RAGDOLL_BEGIN

@@ -447,6 +447,7 @@ LOOPBACK BUFFERS FOR LOCAL PLAYER
 typedef struct loopmsg_s {
 	byte	data[MAX_PACKETLEN];
 	int		datalen;
+	int		timeMillis;
 } loopmsg_t;
 
 typedef struct loopback_s {
@@ -471,6 +472,11 @@ qboolean	NET_GetLoopPacket (netsrc_t sock, netadr_t *net_from, msg_t *net_messag
 		return qfalse;
 
 	i = loop->get & (MAX_LOOPBACK-1);
+	// introduce 100ms delay to all packets to simulate ping
+	if ( loop->msgs[i].timeMillis + 45 > Com_Milliseconds() ) {
+		return qfalse;
+	}
+
 	loop->get++;
 
 	Com_Memcpy (net_message->data, loop->msgs[i].data, loop->msgs[i].datalen);
@@ -494,6 +500,7 @@ void NET_SendLoopPacket (netsrc_t sock, int length, const void *data, netadr_t t
 
 	Com_Memcpy (loop->msgs[i].data, data, length);
 	loop->msgs[i].datalen = length;
+	loop->msgs[i].timeMillis = Com_Milliseconds();
 }
 
 //=============================================================================

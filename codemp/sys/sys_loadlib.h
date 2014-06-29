@@ -14,6 +14,13 @@
 #		define Sys_LoadFunction(h,fn) dlsym(h,fn)
 #		define Sys_LibraryError() dlerror()
 #	endif
+#elif __pnacl__
+// no dynamic linking in pnacl, so the libs must be statically linked.
+// should be uh, interesting to say the least to get that to link lol.
+#	define Sys_LoadLibrary(f) NULL
+#	define Sys_UnloadLibrary(h) NULL
+#	define Sys_LoadFunction(h,fn) NULL
+#	define Sys_LibraryError() "unknown"
 #else
 #	include <SDL.h>
 #	include <SDL_loadso.h>
