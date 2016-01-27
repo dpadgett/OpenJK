@@ -1174,7 +1174,7 @@ static void SV_Status_f( void )
 	Com_Printf( "game    : %s\n", FS_GetCurrentGameDir() );
 	Com_Printf( "udp/ip  : %s:%i os(%s) type(%s)\n", Cvar_VariableString( "net_ip" ), Cvar_VariableIntegerValue( "net_port" ), STATUS_OS, ded_table[com_dedicated->integer] );
 	Com_Printf( "map     : %s gametype(%i)\n", sv_mapname->string, sv_gametype->integer );
-	Com_Printf( "players : %i humans, %i bots (%i max)\n", humans, bots, sv_maxclients->integer - sv_privateClients->integer );
+	Com_Printf( "players : %i humans, %i bots (%i max)\n", humans, bots, sv_maxclients->integer );
 	Com_Printf( "uptime  : %s\n", SV_CalcUptime() );
 
 	Com_Printf ("cl score ping name            address                                 rate \n");
